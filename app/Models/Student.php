@@ -1,12 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use App\Enums\Sexe;
+use App\Enums\Program;
+use App\Enums\Language;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
@@ -24,14 +25,16 @@ class Student extends Model
     ];
 
     protected $casts = [
+        'sexe' => Sexe::class,
+        'language' => Language::class,
         'programs' => 'array',
     ];
 
-    // Accessor pour l'URL complète du profil
-    protected function profileUrl(): Attribute
+    // Accessor pour l'URL du profil
+    public function getProfileUrlAttribute(): ?string
     {
-        return Attribute::make(
-            get: fn () => $this->profile ? asset('storage/'.$this->profile) : null,
-        );
+        return $this->profile 
+            ? asset('storage/' . $this->profile) 
+            : null;
     }
 }
