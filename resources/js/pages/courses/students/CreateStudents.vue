@@ -141,7 +141,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </p>
                         </div>
 
-                        <!-- Photo de profil -->
+                        <!-- -Photo de profil -->
                         <div class="mb-4">
                             <label for="profile" class="block text-sm font-medium mb-2">
                                 Photo de profil
