@@ -126,7 +126,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </p>
                         </div>
 
-                        <!-- Pays -->
+                        <!-- -Pays -->
                         <div class="mb-4">
                             <label for="country" class="block text-sm font-medium mb-2">Pays</label>
                             <Input
