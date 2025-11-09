@@ -30,7 +30,7 @@ class Student extends Model
         'programs' => 'array',
     ];
 
-    // Accessor pour l'URL du profil
+    // -Accessor pour l'URL du profil
     public function getProfileUrlAttribute(): ?string
     {
         return $this->profile 
