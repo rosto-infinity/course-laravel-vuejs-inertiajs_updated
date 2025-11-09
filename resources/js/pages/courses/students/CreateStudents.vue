@@ -64,7 +64,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </p>
                         </div>
 
-                        <!-- Email -->
+                        <!-- -Email -->
                         <div class="mb-4">
                             <label for="email" class="block text-sm font-medium">Adresse mail</label>
                             <Input
