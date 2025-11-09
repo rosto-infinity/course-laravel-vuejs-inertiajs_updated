@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 // app/Enums/Sexe.php
 
 namespace App\Enums;
@@ -11,7 +13,7 @@ enum Sexe: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::MALE => 'Masculinh',
             self::FEMALE => 'Fémininfffffff',
             self::OTHER => 'Autre',
@@ -26,7 +28,7 @@ enum Sexe: string
     public static function options(): array
     {
         return array_map(
-            fn($case) => ['value' => $case->value, 'label' => $case->label()],
+            fn ($case) => ['value' => $case->value, 'label' => $case->label()],
             self::cases()
         );
     }

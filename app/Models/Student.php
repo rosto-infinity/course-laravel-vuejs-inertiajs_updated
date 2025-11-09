@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-
-use App\Enums\Sexe;
-use App\Enums\Program;
 use App\Enums\Language;
-use Illuminate\Database\Eloquent\Model;
+use App\Enums\Sexe;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
@@ -33,8 +33,8 @@ class Student extends Model
     // -Accessor pour l'URL du profil
     public function getProfileUrlAttribute(): ?string
     {
-        return $this->profile 
-            ? asset('storage/' . $this->profile) 
+        return $this->profile
+            ? asset('storage/'.$this->profile)
             : null;
     }
 }

@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
+use App\Enums\Language;
+use App\Enums\Program;
 use App\Enums\Sexe;
+use App\Http\Requests\StudentRequest;
+use App\Models\Student;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
-use App\Enums\Program;
-use App\Enums\Language;
-use App\Models\Student;
-use Illuminate\Http\Request;
-use App\Http\Requests\StudentRequest;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -37,23 +39,24 @@ class StudentController extends Controller
             if ($student?->profile) {
                 Storage::disk('public')->delete($student->profile);
             }
+
             return $request->file('profile')->store('students/profiles', 'public');
         }
+
         return $student?->profile;
     }
-
 
     /**
      * Display a listing of the resource.
      */
-     public function index(): Response
-     {
-      $students = Student::latest()
+    public function index(): Response
+    {
+        $students = Student::latest()
             ->paginate(7)
             ->withQueryString()
             ->through(fn (Student $student) => $this->transformStudent($student));
-    
-        return Inertia::render('courses/students/DashboardStudents',compact('students'));
+
+        return Inertia::render('courses/students/DashboardStudents', compact('students'));
     }
 
     /**
@@ -81,7 +84,8 @@ class StudentController extends Controller
         return redirect()->route('students.index')
             ->with('success', 'Étudiant créé avec succès.');
     }
-public function show(Student $student): Response
+
+    public function show(Student $student): Response
     {
         return Inertia::render('courses/students/ShowStudents', [
             'student' => $this->transformStudent($student),

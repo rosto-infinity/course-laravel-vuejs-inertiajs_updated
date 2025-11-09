@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enums;
 
 enum Language: string
@@ -9,7 +11,7 @@ enum Language: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::FR => 'Français',
             self::EN => 'Anglais',
         };
@@ -23,7 +25,7 @@ enum Language: string
     public static function options(): array
     {
         return array_map(
-            fn($case) => ['value' => $case->value, 'label' => $case->label()],
+            fn ($case) => ['value' => $case->value, 'label' => $case->label()],
             self::cases()
         );
     }

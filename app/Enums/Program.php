@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Enums;
 
 enum Program: string
@@ -14,7 +16,7 @@ enum Program: string
 
     public function label(): string
     {
-        return match($this) {
+        return match ($this) {
             self::PHP => 'PHP',
             self::JS => 'JavaScript',
             self::HTML => 'HTML',
@@ -33,7 +35,7 @@ enum Program: string
     public static function options(): array
     {
         return array_map(
-            fn($case) => ['value' => $case->value, 'label' => $case->label()],
+            fn ($case) => ['value' => $case->value, 'label' => $case->label()],
             self::cases()
         );
     }
