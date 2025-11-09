@@ -49,7 +49,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                         enctype="multipart/form-data"
                         v-slot="{ errors, processing, reset }"
                     >
-                        <!-- Nom -->
+                        <!-- -Nom -->
                         <div class="mb-4">
                             <label for="name" class="block text-sm font-medium">Nom</label>
                             <Input
