@@ -79,7 +79,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </p>
                         </div>
 
-                        <!-- Sexe - Boutons Radio avec v-for -->
+                        <!-- Sexe - -Boutons Radio avec v-for -->
                         <div class="mb-4">
                             <label class="block text-sm font-medium mb-2">Sexe</label>
                             <div class="flex gap-4">
