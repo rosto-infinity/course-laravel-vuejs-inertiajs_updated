@@ -184,7 +184,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </p>
                         </div>
 
-                        <!-- Biographie -->
+                        <!-- -Biographie -->
                         <div class="mb-6">
                             <label for="bio" class="block text-sm font-medium mb-2">Biographie</label>
                             <textarea
