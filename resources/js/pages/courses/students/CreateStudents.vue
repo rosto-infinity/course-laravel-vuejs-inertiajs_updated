@@ -161,7 +161,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                             </p>
                         </div>
 
-                        <!-- Programmes avec v-for -->
+                        <!-- -Programmes avec v-for -->
                         <div class="mb-4">
                             <label class="block text-sm font-medium mb-2">Programmes</label>
                             <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
