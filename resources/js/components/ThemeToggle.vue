@@ -20,8 +20,16 @@ const toggleAppearance = () => {
         <!-- Le poussoir vert -->
         <span
             class="absolute flex h-5 w-5 items-center justify-center rounded-full bg-white shadow dark:bg-primary"
-            :class="appearance === 'dark' ? 'left-6 translate-x-0' : 'left-0 translate-x-0'"
-            style="transition-property: left; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms"
+            :class="
+                appearance === 'dark'
+                    ? 'left-6 translate-x-0'
+                    : 'left-0 translate-x-0'
+            "
+            style="
+                transition-property: left;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 300ms;
+            "
         >
             <!-- Icônes -->
             <Sun v-if="appearance === 'light'" class="h-3 w-3 text-green-800" />

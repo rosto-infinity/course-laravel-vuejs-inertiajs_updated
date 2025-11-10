@@ -1,5 +1,5 @@
 <script setup lang="ts">
-//cours 
+//cours
 import PasswordController from '@/actions/App/Http/Controllers/Settings/PasswordController';
 import InputError from '@/components/InputError.vue';
 import AppLayout from '@/layouts/AppLayout.vue';

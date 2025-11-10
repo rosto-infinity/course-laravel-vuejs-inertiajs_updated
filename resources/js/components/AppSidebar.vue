@@ -12,11 +12,11 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import * as studentsRoutes from '@/routes/students';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import { Folder, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
-import * as studentsRoutes from '@/routes/students';
 
 const mainNavItems: NavItem[] = [
     {
@@ -24,7 +24,7 @@ const mainNavItems: NavItem[] = [
         href: dashboard(),
         icon: LayoutGrid,
     },
-     {
+    {
         title: 'Students',
         href: studentsRoutes.index().url,
         icon: LayoutGrid,

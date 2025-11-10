@@ -1,14 +1,19 @@
 <script setup lang="ts">
 // import RegisteredUserController from '@/actions/App/Http/Controllers/Auth/RegisteredUserController';
 
-
 import { dashboard, login, register } from '@/routes';
 import { Link } from '@inertiajs/vue3';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import AppLogo from './AppLogo.vue';
 
 // Import des icônes lucide-vue-next
-import { Layers, Lightbulb, MenuIcon, UserPlusIcon, XIcon } from 'lucide-vue-next';
+import {
+    Layers,
+    Lightbulb,
+    MenuIcon,
+    UserPlusIcon,
+    XIcon,
+} from 'lucide-vue-next';
 import ThemeToggle from './ThemeToggle.vue';
 
 // État du menu mobile
@@ -43,10 +48,15 @@ const links: NavLink[] = [
 
 <template>
     <header
-        :class="['sticky top-0 z-50 border-b border-border bg-[var(--card)] transition-shadow duration-200', hasShadow ? 'shadow-lg' : 'shadow-none']"
+        :class="[
+            'sticky top-0 z-50 border-b border-border bg-[var(--card)] transition-shadow duration-200',
+            hasShadow ? 'shadow-lg' : 'shadow-none',
+        ]"
     >
         <!-- Bannière promotionnelle animée -->
-        <div class="topHead flex h-7 items-center justify-center text-xs sm:text-sm">
+        <div
+            class="topHead flex h-7 items-center justify-center text-xs sm:text-sm"
+        >
             <a
                 href="https://hostinger.fr/?REFERRALCODE=1ROSTO35"
                 target="_blank"
@@ -84,11 +94,17 @@ const links: NavLink[] = [
         <nav class="mx-auto max-w-7xl px-4 sm:px-6 md:px-9 lg:px-6">
             <div class="flex h-16 items-center justify-between">
                 <!-- Logo + Desktop Links -->
-                <Link href="/" prefetch class=" flex items-center">
-                    <div class="flex h-8 w-8 items-center justify-center rounded-md">
-                        <AppLogo class="h-5 w-5 fill-current text-primary-foreground dark:text-primary-foreground" />
+                <Link href="/" prefetch class="flex items-center">
+                    <div
+                        class="flex h-8 w-8 items-center justify-center rounded-md"
+                    >
+                        <AppLogo
+                            class="h-5 w-5 fill-current text-primary-foreground dark:text-primary-foreground"
+                        />
                     </div>
-                    <span class="text-primary ml-2 text-xl font-bold">Course</span>
+                    <span class="ml-2 text-xl font-bold text-primary"
+                        >Course</span
+                    >
                 </Link>
 
                 <!-- Liens desktop -->
@@ -102,7 +118,10 @@ const links: NavLink[] = [
                     >
                         <component :is="link.icon" class="h-4 w-4" />
                         <span>{{ link.name }}</span>
-                        <span v-if="link.isFree" class="rounded-sm bg-primary px-1.5 pt-0.5 text-xs font-semibold text-white uppercase shadow-sm">
+                        <span
+                            v-if="link.isFree"
+                            class="rounded-sm bg-primary px-1.5 pt-0.5 text-xs font-semibold text-white uppercase shadow-sm"
+                        >
                             FREE
                         </span>
                     </Link>
@@ -111,7 +130,9 @@ const links: NavLink[] = [
                 <ul class="flex gap-2 md:hidden">
                     <li>
                         <Link href="/formations" prefetch>
-                            <div class="flex items-center gap-1"><Layers class="h-3 w-3" /> Formations</div>
+                            <div class="flex items-center gap-1">
+                                <Layers class="h-3 w-3" /> Formations
+                            </div>
                         </Link>
                     </li>
                     <!-- <li class="sm:hidden"> <Link href="/blog" prefetch>
@@ -131,10 +152,15 @@ const links: NavLink[] = [
                         aria-controls="mobile-menu"
                         class="rounded p-2 text-gray-700 hover:text-primary focus:ring-2 focus:ring-primary focus:outline-none md:hidden dark:text-gray-200"
                     >
-                        <span class="sr-only">{{ open ? 'Fermer le menu' : 'Ouvrir le menu' }}</span>
+                        <span class="sr-only">{{
+                            open ? 'Fermer le menu' : 'Ouvrir le menu'
+                        }}</span>
                         <span class="flex items-center space-x-2">
                             <div>
-                                <component :is="open ? XIcon : MenuIcon" class="h-6 w-6" />
+                                <component
+                                    :is="open ? XIcon : MenuIcon"
+                                    class="h-6 w-6"
+                                />
                             </div>
                             <span class="font-bold">Menu</span>
                         </span>
@@ -184,7 +210,11 @@ const links: NavLink[] = [
             leave-from-class="opacity-100 translate-y-0"
             leave-to-class="opacity-0 -translate-y-2"
         >
-            <div v-show="open" id="mobile-menu" class="border-t border-border bg-white md:hidden dark:bg-gray-900">
+            <div
+                v-show="open"
+                id="mobile-menu"
+                class="border-t border-border bg-white md:hidden dark:bg-gray-900"
+            >
                 <div class="space-y-1 px-4 py-3">
                     <!-- Liens principaux -->
 
@@ -198,13 +228,18 @@ const links: NavLink[] = [
                     >
                         <component :is="link.icon" class="h-4 w-4" />
                         {{ link.name }}
-                        <span v-if="link.isFree" class="rounded-sm bg-primary px-1.5 pt-0.5 text-xs font-semibold text-white uppercase shadow-sm">
+                        <span
+                            v-if="link.isFree"
+                            class="rounded-sm bg-primary px-1.5 pt-0.5 text-xs font-semibold text-white uppercase shadow-sm"
+                        >
                             FREE
                         </span>
                     </Link>
 
                     <!-- Auth links -->
-                    <div class="space-y-1 border-t border-gray-200 pt-2 dark:border-gray-700">
+                    <div
+                        class="space-y-1 border-t border-gray-200 pt-2 dark:border-gray-700"
+                    >
                         <Link
                             v-if="$page.props.auth.user"
                             :href="dashboard()"
@@ -225,8 +260,12 @@ const links: NavLink[] = [
                                 S'enregistrer
                             </Link>
 
-                            <div class="mt-4 flex items-center justify-center space-y-2">
-                                <span class="mt-2 text-muted-foreground">Déjà un compte ?</span>
+                            <div
+                                class="mt-4 flex items-center justify-center space-y-2"
+                            >
+                                <span class="mt-2 text-muted-foreground"
+                                    >Déjà un compte ?</span
+                                >
                                 <Link
                                     :href="login()"
                                     @click="open = false"
