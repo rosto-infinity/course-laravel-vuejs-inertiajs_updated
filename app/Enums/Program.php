@@ -13,6 +13,7 @@ enum Program: string
     case VUEJS = 'vuejs';
     case NUXTJS = 'nuxtjs';
     case LARAVEL = 'laravel';
+    case INERTIAJS = 'Inertiajs';
 
     public function label(): string
     {
@@ -24,6 +25,7 @@ enum Program: string
             self::VUEJS => 'Vue.js',
             self::NUXTJS => 'Nuxt.js',
             self::LARAVEL => 'Laravel',
+            self::INERTIAJS => 'Inertiajs',
         };
     }
 
