@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
-
+//comment this line to ignore vite warning about missing types
 export default defineConfig({
     plugins: [
         laravel({
