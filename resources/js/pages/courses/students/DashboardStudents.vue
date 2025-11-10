@@ -11,7 +11,9 @@ import * as studentsRoute from '@/routes/students';
 import { Eye, Pencil, Plus, Trash2 } from 'lucide-vue-next';
 
 interface Props {
-    students: Student;
+     students: {
+        data: Student[]; 
+    };
 }
 
 const props = defineProps<Props>();
