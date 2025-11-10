@@ -16,7 +16,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-// Supprimer un étudiant
+// -Supprimer un étudiant
 const deleteStudent = (student: Student) => {
     if (confirm(`Voulez-vous vraiment supprimer ${student.name} ?`)) {
         router.delete(studentsRoute.destroy(student.id).url);
