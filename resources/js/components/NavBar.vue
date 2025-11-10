@@ -9,7 +9,7 @@ import AppLogo from './AppLogo.vue';
 // Import des icônes lucide-vue-next
 import {
     Layers,
-    Lightbulb,
+   
     MenuIcon,
     UserPlusIcon,
     XIcon,
@@ -41,8 +41,8 @@ interface NavLink {
     isFree?: boolean;
 }
 const links: NavLink[] = [
-    { name: 'Formations', href: '/formations', icon: Layers, isFree: true },
-    { name: 'Blog', href: '/blog', icon: Lightbulb },
+    { name: 'Students', href: '/students', icon: Layers, isFree: true },
+   
 ];
 </script>
 
@@ -129,9 +129,9 @@ const links: NavLink[] = [
 
                 <ul class="flex gap-2 md:hidden">
                     <li>
-                        <Link href="/formations" prefetch>
+                        <Link href="/students" prefetch>
                             <div class="flex items-center gap-1">
-                                <Layers class="h-3 w-3" /> Formations
+                                <Layers class="h-3 w-3" /> Students
                             </div>
                         </Link>
                     </li>
