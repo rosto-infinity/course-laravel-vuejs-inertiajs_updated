@@ -2,7 +2,6 @@
 import Button from '@/components/ui/button/Button.vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
-import * as studentsRoute from '@/routes/students';
 import * as studentsRoutes from '@/routes/students';
 import { type BreadcrumbItem } from '@/types';
 import { Student } from '@/types/student';
@@ -16,14 +15,15 @@ interface Props {
     };
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 
 // -Supprimer un étudiant
 const deleteStudent = (student: Student) => {
     if (confirm(`Voulez-vous vraiment supprimer ${student.name} ?`)) {
-        router.delete(studentsRoute.destroy(student.id).url);
+        router.delete(studentsRoutes.destroy({ student: student.id }).url);
     }
 };
+
 // -Badge de couleur pour les sexes
 const getSexeColor = (sexe: string) => {
     const colors = {
@@ -42,6 +42,7 @@ const getSexeLabel = (sexe: string) => {
     };
     return labels[sexe as keyof typeof labels] || sexe;
 };
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
@@ -65,23 +66,39 @@ const breadcrumbs: BreadcrumbItem[] = [
                 <div
                     class="relative overflow-hidden rounded-xl border border-sidebar-border/70 p-5 dark:border-sidebar-border"
                 >
-                    <Button>
-                        <Link :href="studentsRoutes.create().url" prefetch
-                            >Ajouter un étudiant</Link
-                        >
-                    </Button>
+                    <Link :href="studentsRoutes.create().url" prefetch>
+                        <Button class="w-full">
+                            <Plus class="mr-2 h-4 w-4" />
+                            Ajouter un étudiant
+                        </Button>
+                    </Link>
                 </div>
                 <div
-                    class="relative overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
+                    class="relative flex items-center justify-center overflow-hidden rounded-xl border border-sidebar-border/70 p-5 dark:border-sidebar-border"
                 >
-                    Nombre d'étudiants
+                    <div class="text-center">
+                        <p class="text-sm text-muted-foreground">
+                            Total étudiants
+                        </p>
+                        <p class="text-3xl font-bold">
+                            {{ students.data.length }}
+                        </p>
+                    </div>
                 </div>
                 <div
-                    class="relative overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
+                    class="relative flex items-center justify-center overflow-hidden rounded-xl border border-sidebar-border/70 p-5 dark:border-sidebar-border"
                 >
-                    Nombre d'étudiants
+                    <div class="text-center">
+                        <p class="text-sm text-muted-foreground">
+                            Actifs
+                        </p>
+                        <p class="text-3xl font-bold text-green-600">
+                            {{ students.data.length }}
+                        </p>
+                    </div>
                 </div>
             </div>
+            
             <div class="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
                 <!-- Card principale -->
                 <div
@@ -100,7 +117,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 Gestion des Étudiants
                             </h2>
                             <Link
-                                :href="studentsRoute.create().url"
+                                :href="studentsRoutes.create().url"
                                 class="inline-flex items-center justify-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-green-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-green-600 dark:bg-green-500 dark:hover:bg-green-400"
                             >
                                 <Plus class="h-4 w-4" />
@@ -111,8 +128,29 @@ const breadcrumbs: BreadcrumbItem[] = [
 
                     <!-- Content -->
                     <div class="space-y-6 p-6">
+                        <!-- Message si aucun résultat -->
+                        <div
+                            v-if="students.data.length === 0"
+                            class="rounded-lg border-2 border-dashed border-gray-300 p-12 text-center dark:border-gray-700"
+                        >
+                            <p class="text-lg font-medium text-gray-900 dark:text-white">
+                                Aucun étudiant trouvé
+                            </p>
+                            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                Commencez par ajouter votre premier étudiant
+                            </p>
+                            <Link
+                                :href="studentsRoutes.create().url"
+                                class="mt-4 inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-500"
+                            >
+                                <Plus class="h-4 w-4" />
+                                Ajouter un étudiant
+                            </Link>
+                        </div>
+
                         <!-- Tableau responsive -->
                         <div
+                            v-else
                             class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700"
                         >
                             <table
@@ -167,16 +205,9 @@ const breadcrumbs: BreadcrumbItem[] = [
                                 <tbody
                                     class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800"
                                 >
-                                    <!-- Message si aucun résultat -->
-                                    <tr v-if="students.data.length === 0">
-                                        <p class="text-center font-medium">
-                                            Aucun étudiant trouvé
-                                        </p>
-                                    </tr>
-
                                     <!-- Lignes des étudiants -->
                                     <tr
-                                        v-for="student in props.students.data"
+                                        v-for="student in students.data"
                                         :key="student.id"
                                         class="transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/50"
                                     >
@@ -262,9 +293,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 <!-- Voir -->
                                                 <Link
                                                     :href="
-                                                        studentsRoute.show(
-                                                            student.id,
-                                                        ).url
+                                                        studentsRoutes.show({ student: student.id }).url
                                                     "
                                                     class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                                                     title="Voir les détails"
@@ -275,9 +304,7 @@ const breadcrumbs: BreadcrumbItem[] = [
                                                 <!-- Modifier -->
                                                 <Link
                                                     :href="
-                                                        studentsRoute.edit(
-                                                            student.id,
-                                                        )
+                                                        studentsRoutes.edit({ student: student.id }).url
                                                     "
                                                     class="inline-flex h-8 w-8 items-center justify-center rounded-md text-green-600 transition-colors hover:bg-green-50 hover:text-green-700 dark:text-green-400 dark:hover:bg-green-900/20 dark:hover:text-green-300"
                                                     title="Modifier"

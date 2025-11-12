@@ -60,6 +60,11 @@ class StudentController extends Controller
     }
 
     /**
+ * Display the specified resource.
+ */
+
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create(): Response
